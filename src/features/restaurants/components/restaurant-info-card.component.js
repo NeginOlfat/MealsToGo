@@ -1,9 +1,19 @@
 import React from "react";
+import { View } from "react-native";
+import { SvgXml } from "react-native-svg";
 import {
   Title,
   RestaurantCard,
-  RestaurantCardCover
+  RestaurantCardCover,
+  Info,
+  Section,
+  Address,
+  Rating,
+  SectionEnd,
+  Text,
+  Icon
 } from "./restaurant-info-card.styles";
+import star from "../../../../assets/star";
 
 export const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {
@@ -19,10 +29,26 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
     placeId,
   } = restaurant;
 
+  const ratingArray = Array.from(new Array(Math.floor(rating)));
+
   return (
     <RestaurantCard elevation={5}>
       <RestaurantCardCover source={{ uri: photos[0] }} />
-      <Title>{name}</Title>
+      <Info>
+        <Title>{name}</Title>
+        <Section>
+          <Rating>
+            {ratingArray.map((index, key) => <SvgXml key={key} height={20} width={20} xml={star} />)}
+          </Rating>
+          <SectionEnd>
+            {isClosedTemporarily && (<Text>CLOSED TEMPORARILY</Text>)}
+          </SectionEnd>
+          <View>
+            <Icon source={{ uri: icon }} />
+          </View>
+        </Section>
+        <Address>{address}</Address>
+      </Info>
     </RestaurantCard>
   );
 };
