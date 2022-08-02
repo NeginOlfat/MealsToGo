@@ -13,6 +13,7 @@ import {
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { Text } from "../../../components/typography/text.component";
 import star from "../../../../assets/star";
+import open from "../../../../assets/open";
 
 export const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {
@@ -41,6 +42,9 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
           </Rating>
           <SectionEnd>
             {isClosedTemporarily && (<Text variant="error">CLOSED TEMPORARILY</Text>)}
+            <Spacer position="left" size="large">
+              {isOpeningNow && <SvgXml height={20} width={20} xml={open} />}
+            </Spacer>
             <Spacer position="left" size="large">
               <Icon source={{ uri: icon }} />
             </Spacer>

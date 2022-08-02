@@ -1,12 +1,6 @@
 import { Card } from "react-native-paper";
 import styled from "styled-components/native";
 
-export const Title = styled.Text`
-  font-family: ${props => props.theme.fonts.body};
-  font-size: ${props => props.theme.fontSizes.body};
-  color: ${props => props.theme.colors.ui.primary};
-`;
-
 export const RestaurantCard = styled(Card)`
   width: 95%;
   align-self: center;
@@ -46,8 +40,4 @@ export const SectionEnd = styled.View`
 export const Icon = styled.Image`
   width: 15px;
   height: 15px;
-`;
-
-export const Text = styled.Text`
-  color: ${props => props.theme.colors.ui.error};
 `;
