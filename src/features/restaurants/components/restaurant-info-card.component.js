@@ -1,8 +1,6 @@
 import React from "react";
-import { View } from "react-native";
 import { SvgXml } from "react-native-svg";
 import {
-  Title,
   RestaurantCard,
   RestaurantCardCover,
   Info,
@@ -10,9 +8,10 @@ import {
   Address,
   Rating,
   SectionEnd,
-  Text,
   Icon
 } from "./restaurant-info-card.styles";
+import { Spacer } from "../../../components/spacer/spacer.component";
+import { Text } from "../../../components/typography/text.component";
 import star from "../../../../assets/star";
 
 export const RestaurantInfoCard = ({ restaurant = {} }) => {
@@ -35,17 +34,17 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
     <RestaurantCard elevation={5}>
       <RestaurantCardCover source={{ uri: photos[0] }} />
       <Info>
-        <Title>{name}</Title>
+        <Text variant="label">{name}</Text>
         <Section>
           <Rating>
-            {ratingArray.map((index, key) => <SvgXml key={key} height={20} width={20} xml={star} />)}
+            {ratingArray.map((_, key) => <SvgXml key={key} height={20} width={20} xml={star} />)}
           </Rating>
           <SectionEnd>
-            {isClosedTemporarily && (<Text>CLOSED TEMPORARILY</Text>)}
+            {isClosedTemporarily && (<Text variant="error">CLOSED TEMPORARILY</Text>)}
+            <Spacer position="left" size="large">
+              <Icon source={{ uri: icon }} />
+            </Spacer>
           </SectionEnd>
-          <View>
-            <Icon source={{ uri: icon }} />
-          </View>
         </Section>
         <Address>{address}</Address>
       </Info>
