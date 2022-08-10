@@ -18,7 +18,8 @@ export const AuthenticationContextProvider = ({ children }) => {
             setUser(u);
         }).catch((e) => {
             setIsLoading(false);
-            setError(e)
+            setError(e.toString())
+            console.log(e)
         })
     };
 
