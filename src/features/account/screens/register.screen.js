@@ -13,12 +13,13 @@ import {
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
 
-export const LoginScreen = ({ navigation }) => {
+export const RegisterScreen = ({ navigation }) => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [repeatedPassword, setRepeatedPassword] = useState("");
 
-    const { onLogin, error, isLoading } = useContext(AuthenticationContext);
+    const { onRegister, error, isLoading } = useContext(AuthenticationContext);
 
     return (
         <AccountBackground>
@@ -43,6 +44,16 @@ export const LoginScreen = ({ navigation }) => {
                     />
                 </Spacer>
                 <Spacer size="large">
+                    <AuthInput
+                        label="Repeat Password"
+                        value={repeatedPassword}
+                        textContentType="password"
+                        secureTextEntry
+                        autoCapitalize="none"
+                        onChangeText={(p) => setRepeatedPassword(p)}
+                    />
+                </Spacer>
+                <Spacer size="large">
                     {error && (
                         <ErrorContainer>
                             <Text variant="error">{error}</Text>
@@ -52,12 +63,13 @@ export const LoginScreen = ({ navigation }) => {
                 <Spacer size="large">
                     {!isLoading ? (
                         <AuthButton
-                            icon="lock-open-outline"
+                            icon="email"
                             mode="contained"
-                            onPress={() => onLogin(email, password)}
+                            onPress={() => onRegister(email, password, repeatedPassword)}
                         >
-                            Login
-                        </AuthButton>) : (
+                            Register
+                        </AuthButton>
+                    ) : (
                         <ActivityIndicator animating={true} color={Colors.blue300} />
                     )
                     }
