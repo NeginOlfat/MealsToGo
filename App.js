@@ -3,15 +3,13 @@ import AppLoading from "expo-app-loading";
 import { StatusBar } from "expo-status-bar";
 import { ThemeProvider } from "styled-components/native";
 import firebase from "firebase/compat";
-
 import { useFonts as useOswald, Oswald_400Regular } from "@expo-google-fonts/oswald";
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
-import { LocationContextProvider } from "./src/services/location/location.context";
-import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
-import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
+
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
 import { theme } from "./src/infrastructure/theme";
 import { Navigation } from "./src/infrastructure/navigation";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyB4GX1iFLa3x-p4NW_y2kS5RhPZbFi6DFM",
@@ -42,13 +40,9 @@ const App = () => {
     <>
       <ThemeProvider theme={theme} >
         <AuthenticationContextProvider>
-          <FavouritesContextProvider>
-            <LocationContextProvider>
-              <RestaurantsContextProvider>
-                <Navigation />
-              </RestaurantsContextProvider>
-            </LocationContextProvider>
-          </FavouritesContextProvider>
+
+          <Navigation />
+
         </AuthenticationContextProvider>
         <StatusBar style="auto" />
       </ThemeProvider>
