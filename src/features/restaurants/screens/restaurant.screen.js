@@ -9,12 +9,9 @@ import { SafeArea } from "../../../components/utility/safe-area.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { FavouritesBar } from "../../../components/favourite/favourites-bar.component";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
+import { RestaurantList } from "../components/restaurant-list.style";
 import { Search } from "../components/search.component";
 
-
-export const RestaurantList = styled.FlatList.attrs({
-  contentContainerStyle: { padding: 16 }
-})``;
 
 export const LoadingContainer = styled.View`
   position: absolute;
@@ -50,26 +47,27 @@ export const RestaurantScreen = ({ navigation }) => {
       />
       {isToggled && <FavouritesBar favourites={favourites} onNavigation={navigation.navigate} />}
 
-      {!error && !loading && < RestaurantList
-        data={restaurants}
-        renderItem={({ item }) => {
-          return (
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("RestaurantDetail", {
-                  restaurant: item
-                })
-              }
-            >
-              <Spacer size="large" position="bottom">
-                <RestaurantInfoCard restaurant={item} />
-              </Spacer>
-            </TouchableOpacity>
-          )
-        }}
-        keyExtractor={item => item.name}
-      />}
-
+      {!error && !loading && (
+        < RestaurantList
+          data={restaurants}
+          renderItem={({ item }) => {
+            return (
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("RestaurantDetail", {
+                    restaurant: item
+                  })
+                }
+              >
+                <Spacer size="large" position="bottom">
+                  <RestaurantInfoCard restaurant={item} />
+                </Spacer>
+              </TouchableOpacity>
+            )
+          }}
+          keyExtractor={item => item.name}
+        />
+      )}
     </SafeArea>
   );
 }
