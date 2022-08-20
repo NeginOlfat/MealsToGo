@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { ScrollView } from "react-native";
-import { List } from "react-native-paper";
+import { List, Divider } from "react-native-paper";
 
 import { CreditCardInput } from "../components/credit-card.component";
 import { CardIconContiner, CardIcon, NameInput, PayButton, ClearButton, PaymentProcessing } from "../components/checkout.style";
@@ -68,6 +68,8 @@ export const CheckoutScreen = ({ navigation }) => {
                     </List.Section>
                     <Text variant="body">Total: {sum / 100} </Text>
                 </Spacer>
+                <Spacer position="top" size="large" />
+                <Divider />
                 <NameInput
                     label="name"
                     value={name}
